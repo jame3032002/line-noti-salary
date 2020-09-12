@@ -34,13 +34,13 @@ exports.lineWebhook = functions.https.onRequest(async (req, res) => {
         registerUser(lineUserID, idCardForRegister)
         return replyMessage(req.body, res, 'ลงทะเบียนเรียบร้อย')
       } else {
-        switch(messageFromUser) {
+        switch (messageFromUser) {
           case 'register':
             return replyMessage(req.body, res, 'กรุณากรอก register:เลขบัตรบัตรประชาชน เช่น register:1234567890123')
           case 'salary':
             const hasBeenRegistered = await validateRegistered(lineUserID)
 
-            if(!hasBeenRegistered) {
+            if (!hasBeenRegistered) {
               return replyMessage(req.body, res, 'กรุณาลงทะเบียนก่อนใช้งาน')
             }
 
